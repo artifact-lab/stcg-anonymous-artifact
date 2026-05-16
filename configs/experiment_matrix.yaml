@@ -1,0 +1,44 @@
+synthetic:
+  generators:
+    - var
+    - nonlinear_var
+    - switching_var
+  seeds: [0, 1, 2, 3, 4]
+  n_nodes: [8, 16]
+  max_lag: [2, 3, 5]
+  edge_prob: [0.10, 0.18]
+
+baselines:
+  classical:
+    - granger
+    - var_lasso
+    - dynamic_var_lasso
+    - pcmci
+  neural:
+    - stcg_v0
+    - stcg_v1
+    - mtgnn
+    - graph_wavenet
+    - transformer
+
+ablations:
+  - no_lag_contrast
+  - no_masked_reconstruction
+  - no_temporal_consistency
+  - no_topk
+  - static_graph
+
+metrics:
+  structure:
+    - edge_auc
+    - precision_at_k
+    - shd
+    - lag_recovery_accuracy
+    - sparsity
+  downstream:
+    - mae
+    - rmse
+    - nll
+    - auroc
+    - auprc
+    - f1
